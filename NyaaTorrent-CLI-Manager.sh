@@ -58,7 +58,6 @@ usage() {
 		"Usage: $0 [options]\n" \
 		"Options:\n\n" \
 		"Adding a torrent:\n" \
-		"-a /path/to/the/file.torrent or http://website.com/path/to/file.torrent - Add a torrent.\n" \
 		"-d Optional: Set the torrent description. Default is \"$torrent_description\".\n" \
 		"-n Optional: Set the torrent name. Default read the name contained in the .torrent.\n" \
 		"-t Optional: Set the field tracker. Default to $torrent_tracker.\n" \
@@ -67,9 +66,10 @@ usage() {
 		"-r Optional: Set the field \"Remake\" of the torrent. Can be 0 or 1. Default to $torrent_remake.\n" \
 		"-o Optional: Set the field \"Anonymous\" of the torrent. Can be 0 or 1. Default to $torrent_anonymous.\n" \
 		"-i Optional: Set the field \"Hidden\" of the torrent. Can be 0 or 1. Default to $torrent_hidden.\n\n" \
+		"-a /path/to/the/file.torrent or http://website.com/path/to/file.torrent - Add the torrent.\n" \
 		"Other:\n" \
 		"-l List your torrents.\n" \
-		"-g Get the latest torrent of your account\n" \
+		"-g Get the latest torrents of your account.\n" \
 		"-h Show this help.\n"
 }
 
