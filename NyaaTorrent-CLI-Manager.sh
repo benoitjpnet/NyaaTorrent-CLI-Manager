@@ -84,6 +84,12 @@ checkDepends() {
 			"Otherwise press Enter to continue."
 		read
 	fi
+	w3m=$(which w3m 2>/dev/null)
+	if (($? != 0)); then
+		echo "Warning: w3m not found, you may exit the script right now by pressing ^C." \
+		"Otherwise press Enter to continue."
+		read
+	fi
 }
 
 authenticate() {
@@ -152,10 +158,29 @@ addTorrent() {
 	return 0
 }
 
-# listTorrents() {
-# 
-# 	# Lists your torrents.
-# }
+listTorrents() {
+
+	# Lists your torrents.
+	# Get the User ID.
+	[ ! -s $curl_cookie ] && authenticate
+	user_id=$(grep -o "id\s\+[0-9]\+" $curl_cookie | cut -f2)
+
+	# Get the first page + number of pages.
+	$curl -# \
+		"$nyaa_website/?page=torrents&user=$user_id" \
+		-b $curl_cookie \
+		-o $curl_output
+	totalPages=$(grep -oe "offset=[0-9]*" $curl_output | tail -1 | cut -d"=" -f2)
+
+	# Displaying with w3m.
+	for i in $(seq 1 $totalPages); do
+		$curl -# \
+			"$nyaa_website/?page=torrents&user=$user_id&offset=$i" \
+			-b $curl_cookie \
+			-o $curl_output
+		$w3m $curl_output -T "text/html" -dump -cols 150
+	done
+}
 # 
 # latestTorrent() {
 # 
