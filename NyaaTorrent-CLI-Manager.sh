@@ -9,8 +9,8 @@
 
 # Configuration, edit these variables.
 nyaa_account_anonymous=0 # Set to 1 if you doesn't want to authenticate to NyaaTorrent.
-nyaa_account_login="benpro" # Set your login.
-nyaa_account_passwd="azqswx" # Set you password.
+nyaa_account_login="" # Set your login.
+nyaa_account_passwd="" # Set you password.
 
 # Optional configuration.
 nyaa_website="http://www.nyaa.eu"
