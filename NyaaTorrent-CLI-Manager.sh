@@ -235,7 +235,7 @@ fi
 checkDepends
 
 # Then set a trap to do some cleaning when the script exit.
-# trap 'clean;' SIGINT SIGTERM EXIT
+trap 'clean;' SIGINT SIGTERM EXIT
 
 # Getopts to handle options and parameters.
 while getopts "d:n:t:u:c:r:o:i:a: e l g h" opt; do
