@@ -152,7 +152,7 @@ addTorrent() {
 		-b $curl_cookie \
 		-o $curl_output
 	# Getting links
-	link_info=$(grep -E -o "http://www.nyaa.eu/\?page=torrentinfo&amp;tid=[0-9]+" $curl_output | sed "s/amp;//")
+	link_info=$(grep -E -o 'http://www.nyaa.eu/\?page=torrentinfo&#38;tid=[0-9]+' $curl_ouput | head -1 | sed s'/\&#38;/\&/')
 	link_download=$(sed "s/torrentinfo/download/" <<< $link_info)
 	[ -z $link_download ] && return 1
 	return 0
