@@ -98,8 +98,10 @@ authenticate() {
 	$curl -# \
 		"$nyaa_website/?page=login" \
 		-A "$curl_useragent" \
-		-d loginusername="$nyaa_account_login" \
-		-d loginpassword="$nyaa_account_passwd" \
+		-d login="$nyaa_account_login" \
+		-d method="1" \
+		-d password="$nyaa_account_passwd" \
+		-d submit="Submit" \
 		-c $curl_cookie \
 		-o $curl_output
 		grep -F -o "Login successful" $curl_output &>/dev/null
@@ -123,7 +125,7 @@ checkIfFileIsURL() {
 addTorrent() {
 
 	# Add a torrent.
-	
+
 	# If you want to be anonymous, the script will not proceed to
 	# authentication on nyaa.
 	if ((!$nyaa_account_anonymous)); then
@@ -181,9 +183,9 @@ listTorrents() {
 		$w3m $curl_output -T "text/html" -dump -cols 150
 	done
 }
-# 
+#
 # latestTorrent() {
-# 
+#
 # 	# Get the link to the latest torrent in your account.
 # }
 
@@ -287,7 +289,7 @@ while getopts "d:n:t:u:c:r:o:i:a: e l g h" opt; do
 		h)
 			usage
 			;;
-			
+
         \?)
             echo "Invalid option: -$OPTARG" >&2
             exit 1
