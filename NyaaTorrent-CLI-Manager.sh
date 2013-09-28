@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # NyaaTorrent-CLI-Manager is a simple BASH script to manage torrents on the
-# website nyaa.eu.
+# website nyaa.se.
 #
 # Author : Benoît.S « Benpro » <benpro@benprobox.fr>
 # Website : benprobox.fr
@@ -13,7 +13,7 @@ nyaa_account_login="" # Set your login.
 nyaa_account_passwd="" # Set you password.
 
 # Optional configuration.
-nyaa_website="http://www.nyaa.eu"
+nyaa_website="http://www.nyaa.se"
 curl_cookie=$(mktemp)
 curl_output=$(mktemp)
 curl_useragent="NyaaTorrent-CLI-Manager - https://github.com/benpro/NyaaTorrent-CLI-Manager"
@@ -154,7 +154,7 @@ addTorrent() {
 		-b $curl_cookie \
 		-o $curl_output
 	# Getting links
-	link_info=$(grep -E -o 'http://www.nyaa.eu/\?page=view&#38;tid=[0-9]+' $curl_output | head -1 | sed s'/\&#38;/\&/')
+	link_info=$(grep -E -o 'http://www.nyaa.se/\?page=view&#38;tid=[0-9]+' $curl_output | head -1 | sed s'/\&#38;/\&/')
 	link_download=$(sed "s/view/download/" <<< $link_info)
 	[ -z $link_download ] && return 1
 	return 0
